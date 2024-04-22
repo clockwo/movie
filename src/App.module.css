@@ -2,3 +2,18 @@
   max-width: calc(1440px - 120px * 2);
   margin-inline: auto;
 }
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 588px;
+  margin-bottom: 24px;
+}
+
+.search {
+  display: flex;
+  width: 500px;
+  gap: 8px;
+  margin-bottom: 80px;
+}

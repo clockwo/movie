@@ -5,21 +5,94 @@ import Input from '@/components/Input/Input';
 import SearchIcon from '@/assets/icons/search.svg';
 import Navbar from '@/components/Navbar/Navbar';
 import styles from './App.module.css';
+import Item from './components/Item/Item';
+import ItemList from './components/ItemList/ItemList';
 
 function App() {
+  const movies = [
+    {
+      id: 1,
+      name: 'Black Window',
+      rating: 324,
+      image: 'https://i.imgur.com/dbzIjPO.png',
+    },
+
+    {
+      id: 2,
+      name: 'Shang Chi',
+      rating: 124,
+      image: 'https://i.imgur.com/dbzIjPO.png',
+    },
+
+    {
+      id: 3,
+      name: 'Loki',
+      rating: 235,
+      image: 'https://i.imgur.com/dbzIjPO.png',
+    },
+
+    {
+      id: 4,
+      name: 'How I Met Your Mother',
+      rating: 123,
+      image: 'https://i.imgur.com/dbzIjPO.png',
+    },
+
+    {
+      id: 5,
+      name: 'Money Heist',
+      rating: 8125,
+      image: 'https://i.imgur.com/dbzIjPO.png',
+    },
+
+    {
+      id: 6,
+      name: 'Friends',
+      rating: 123,
+      image: 'https://i.imgur.com/dbzIjPO.png',
+    },
+
+    {
+      id: 7,
+      name: 'The Big Bang Theory',
+      rating: 12,
+      image: 'https://i.imgur.com/dbzIjPO.png',
+    },
+
+    {
+      id: 8,
+      name: 'Two And a Half Men',
+      rating: 456,
+      image: 'https://i.imgur.com/dbzIjPO.png',
+    },
+  ];
   const clickHandler = () => {
     console.log('Click on button!');
   };
   return (
     <div className={styles.wrapper}>
       <Navbar />
-      <Button onClick={clickHandler}>Искать</Button>
-      <Heading>Поиск</Heading>
-      <Paragraph>
-        Введите название фильма, сериала или мультфильма для поиска и добавления
-        в избранное.
-      </Paragraph>
-      <Input placeholder={'Введите название...'} icon={SearchIcon} />
+      <div className={styles.info}>
+        <Heading>Поиск</Heading>
+        <Paragraph>
+          Введите название фильма, сериала или мультфильма для поиска и
+          добавления в избранное.
+        </Paragraph>
+      </div>
+      <div className={styles.search}>
+        <Input placeholder={'Введите название...'} icon={SearchIcon} />
+        <Button onClick={clickHandler}>Искать</Button>
+      </div>
+      <ItemList>
+        {movies.map((movie) => (
+          <Item
+            key={movie.id}
+            name={movie.name}
+            image={movie.image}
+            rating={movie.rating}
+          />
+        ))}
+      </ItemList>
     </div>
   );
 }

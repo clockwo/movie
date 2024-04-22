@@ -1,6 +1,6 @@
 .wrapper {
   position: relative;
-  max-width: 500px;
+  width: 100%;
   &:has(.icon) {
     .input {
       padding-left: 56px;
