@@ -1,0 +1,13 @@
+:root {
+  --primary-clr: rgb(123, 110, 246);
+  --secondary-clr: rgb(235, 238, 245);
+  --grey-clr: rgb(142, 149, 169);
+  --white-clr: rgb(255, 255, 255);
+
+  --font: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background-color: rgb(18, 24, 41);
+}
