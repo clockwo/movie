@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: 16px;
+  margin-bottom: 80px;
+}
+
+.links {
+  display: flex;
+  gap: 16px;
+  margin-right: 16px;
+}
+
+.link {
+  padding-inline: 16px;
+  text-decoration: none;
+
+  color: rgb(168, 174, 191);
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 1px;
+}
+
+.link.active {
+  color: var(--white-clr);
+}
