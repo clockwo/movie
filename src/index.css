@@ -4,10 +4,21 @@
   --grey-clr: rgb(142, 149, 169);
   --white-clr: rgb(255, 255, 255);
 
+  --button-clr: rgba(123, 110, 246, 0.8);
+  --input-border-clr: rgb(50, 59, 84);
+  --input-background-clr: rgba(0, 0, 0, 0.1);
+
+  --rating-background-clr: rgba(0, 0, 0, 0.65);
+  --rating-text-clr: rgb(255, 189, 109);
+
+  --link-text-clr: rgb(168, 174, 191);
+
+  --body-background-clr: rgb(18, 24, 41);
+
   --font: 'Poppins', sans-serif;
 }
 
 body {
   font-family: var(--font);
-  background-color: rgb(18, 24, 41);
+  background-color: var(--body-background-clr);
 }

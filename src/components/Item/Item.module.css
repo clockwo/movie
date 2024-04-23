@@ -33,9 +33,9 @@
 
   border-radius: 8px;
   backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.65);
+  background-color: var(--rating-background-clr);
 
-  color: rgb(255, 189, 109);
+  color: var(--rating-text-clr);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;

@@ -4,11 +4,13 @@ import Paragraph from '@/components/Paragraph/Paragraph';
 import Input from '@/components/Input/Input';
 import SearchIcon from '@/assets/icons/search.svg';
 import Navbar from '@/components/Navbar/Navbar';
+import Item from '@/components/Item/Item';
+import ItemList from '@/components/ItemList/ItemList';
+import { useAuth } from '@/hooks/useAuth';
+import { useRef } from 'react';
 import styles from './App.module.css';
-import Item from './components/Item/Item';
-import ItemList from './components/ItemList/ItemList';
 
-function App() {
+const App = () => {
   const movies = [
     {
       id: 1,
@@ -66,12 +68,27 @@ function App() {
       image: 'https://i.imgur.com/dbzIjPO.png',
     },
   ];
-  const clickHandler = () => {
+
+  const inputRef = useRef(null);
+  const { loginUser, logoutUser, activeUser } = useAuth();
+
+  const onLoginClick = () => {
+    const value = inputRef.current.value;
+    if (value) {
+      loginUser(value);
+    }
+  };
+
+  const onClickLog = () => {
     console.log('Click on button!');
   };
+
   return (
     <div className={styles.wrapper}>
-      <Navbar />
+      <Navbar
+        activeUserName={activeUser?.name}
+        logoutUser={activeUser && logoutUser}
+      />
       <div className={styles.info}>
         <Heading>Поиск</Heading>
         <Paragraph>
@@ -81,7 +98,7 @@ function App() {
       </div>
       <div className={styles.search}>
         <Input placeholder={'Введите название...'} icon={SearchIcon} />
-        <Button onClick={clickHandler}>Искать</Button>
+        <Button onClick={onClickLog}>Искать</Button>
       </div>
       <ItemList>
         {movies.map((movie) => (
@@ -93,8 +110,15 @@ function App() {
           />
         ))}
       </ItemList>
+
+      {/* Remove later to login page */}
+      <div className={styles.info}>
+        <Heading>Вход</Heading>
+        <Input ref={inputRef} placeholder={'Ваше имя'} />
+        <Button onClick={onLoginClick}>Войти в профиль</Button>
+      </div>
     </div>
   );
-}
+};
 
 export default App;

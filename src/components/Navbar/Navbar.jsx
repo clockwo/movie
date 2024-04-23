@@ -1,7 +1,7 @@
 import logo from '@/assets/icons/logo.svg';
 import styles from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ activeUserName, logoutUser }) => {
   return (
     <div className={styles.navbar}>
       <img src={logo} />
@@ -12,8 +12,13 @@ const Navbar = () => {
         <a className={styles.link} href="#">
           Мои фильмы
         </a>
-        <a className={styles.link} href="#">
-          Войти
+        {activeUserName && (
+          <a className={styles.link} href="#">
+            {activeUserName}
+          </a>
+        )}
+        <a onClick={logoutUser} className={styles.link} href="#">
+          {!logoutUser ? 'Войти' : 'Выйти'}
         </a>
       </div>
     </div>
