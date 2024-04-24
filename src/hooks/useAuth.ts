@@ -10,7 +10,9 @@ export const useAuth = () => {
   useEffect(() => {
     const storedUsers = localStorage.getItem(USERS_STORAGE_KEY);
     if (storedUsers) {
-      const response = JSON.parse(storedUsers);
+      const response: User[] = JSON.parse(storedUsers);
+      const activeUser = response.find((user) => user.isLogined);
+      setActiveUser(activeUser ? activeUser : null);
       setUsers(response);
     }
   }, []);

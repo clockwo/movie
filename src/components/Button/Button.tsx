@@ -1,5 +1,5 @@
-import type { ButtonProps } from './Button.props';
-import styles from './Button.module.css';
+import type { ButtonProps } from "./Button.props";
+import styles from "./Button.module.css";
 
 const Button = ({ children, ...props }: ButtonProps) => {
   return (
