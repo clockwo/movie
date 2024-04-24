@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
-import { USERS_STORAGE_KEY } from '../helpers/localStorageKeys';
+import type { User } from '@/interfaces/user.interface';
+
+const USERS_STORAGE_KEY = 'users';
 
 export const useAuth = () => {
-  const [users, setUsers] = useState([]);
-  const [activeUser, setActiveUser] = useState(null);
+  const [users, setUsers] = useState<User[]>([]);
+  const [activeUser, setActiveUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const response = JSON.parse(localStorage.getItem(USERS_STORAGE_KEY));
-    if (response) {
+    const storedUsers = localStorage.getItem(USERS_STORAGE_KEY);
+    if (storedUsers) {
+      const response = JSON.parse(storedUsers);
       setUsers(response);
     }
   }, []);
 
-  const loginUser = (userName) => {
+  const loginUser = (userName: string) => {
     const usersSnapshot = users.map((user) => {
       return { ...user, isLogined: false };
     });
@@ -33,11 +36,13 @@ export const useAuth = () => {
 
   const logoutUser = () => {
     const usersSnapshot = [...users];
-    const existingUser = usersSnapshot.find((user) => user.isLogined);
-    existingUser.isLogined = false;
-    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usersSnapshot));
-    setActiveUser(null);
-    setUsers([...usersSnapshot]);
+    const activeUser = usersSnapshot.find((user) => user.isLogined);
+    if (activeUser) {
+      activeUser.isLogined = false;
+      localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usersSnapshot));
+      setActiveUser(null);
+      setUsers([...usersSnapshot]);
+    }
   };
 
   return { loginUser, logoutUser, activeUser };

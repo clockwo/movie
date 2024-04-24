@@ -2,11 +2,11 @@ import Button from '@/components/Button/Button';
 import Heading from '@/components/Heading/Heading';
 import Paragraph from '@/components/Paragraph/Paragraph';
 import Input from '@/components/Input/Input';
-import SearchIcon from '@/assets/icons/search.svg';
 import Navbar from '@/components/Navbar/Navbar';
 import Item from '@/components/Item/Item';
 import ItemList from '@/components/ItemList/ItemList';
 import { useContext, useRef } from 'react';
+import SearchIcon from '@/assets/icons/search.svg';
 import styles from './App.module.css';
 import { UserContext } from './context/user.context';
 
@@ -70,12 +70,14 @@ const App = () => {
   ];
 
   const { loginUser } = useContext(UserContext);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onLoginClick = () => {
-    const value = inputRef.current.value;
-    if (value) {
-      loginUser(value);
+    if (inputRef.current) {
+      const value = inputRef.current.value;
+      if (value) {
+        loginUser(value);
+      }
     }
   };
 

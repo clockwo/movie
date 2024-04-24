@@ -20,7 +20,11 @@ const Navbar = () => {
             {activeUser.name}
           </a>
         )}
-        <a className={styles.link} onClick={activeUser && logoutUser} href="#">
+        <a
+          className={styles.link}
+          onClick={activeUser ? logoutUser : undefined}
+          href="#"
+        >
           {activeUser?.isLogined ? 'Выйти' : 'Войти'}
         </a>
       </div>
