@@ -6,9 +6,9 @@ import SearchIcon from '@/assets/icons/search.svg';
 import Navbar from '@/components/Navbar/Navbar';
 import Item from '@/components/Item/Item';
 import ItemList from '@/components/ItemList/ItemList';
-import { useAuth } from '@/hooks/useAuth';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import styles from './App.module.css';
+import { UserContext } from './context/user.context';
 
 const App = () => {
   const movies = [
@@ -69,8 +69,8 @@ const App = () => {
     },
   ];
 
+  const { loginUser } = useContext(UserContext);
   const inputRef = useRef(null);
-  const { loginUser, logoutUser, activeUser } = useAuth();
 
   const onLoginClick = () => {
     const value = inputRef.current.value;
@@ -85,10 +85,7 @@ const App = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Navbar
-        activeUserName={activeUser?.name}
-        logoutUser={activeUser && logoutUser}
-      />
+      <Navbar />
       <div className={styles.info}>
         <Heading>Поиск</Heading>
         <Paragraph>
