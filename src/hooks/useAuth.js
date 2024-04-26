@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-
-const USERS_STORAGE_KEY = 'users';
+import { USERS_STORAGE_KEY } from '../helpers/localStorageKeys';
 
 export const useAuth = () => {
   const [users, setUsers] = useState([]);
@@ -34,8 +33,8 @@ export const useAuth = () => {
 
   const logoutUser = () => {
     const usersSnapshot = [...users];
-    const activeUser = usersSnapshot.find((user) => user.isLogined);
-    activeUser.isLogined = false;
+    const existingUser = usersSnapshot.find((user) => user.isLogined);
+    existingUser.isLogined = false;
     localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usersSnapshot));
     setActiveUser(null);
     setUsers([...usersSnapshot]);
