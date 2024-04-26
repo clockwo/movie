@@ -8,7 +8,6 @@ import './reset.css';
 import './index.css';
 import Login from './pages/Login/Login';
 import Favorites from './pages/Favorites/Favorites';
-import Movie from './pages/Movie/Movie';
 
 const router = createBrowserRouter([
   {
@@ -26,10 +25,6 @@ const router = createBrowserRouter([
       {
         path: '/favorites',
         element: <Favorites />,
-      },
-      {
-        path: '/movie/:id',
-        element: <Movie />,
       },
       {
         path: '*',

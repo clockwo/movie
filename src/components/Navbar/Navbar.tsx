@@ -12,13 +12,7 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      <img
-        onClick={navigateToHome}
-        src={logo}
-        alt="Logo"
-        width={49}
-        height={40}
-      />
+      <img onClick={navigateToHome} src={logo} />
       <div className={styles.links}>
         <NavLink
           to={'/'}
