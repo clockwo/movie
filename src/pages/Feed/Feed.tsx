@@ -17,10 +17,13 @@ const Feed = () => {
     if (searchInputRef.current) {
       const value = searchInputRef.current.value;
       if (value) {
+        console.log(value);
         findMovies(value);
       }
     }
   };
+
+  console.log(movies);
 
   return (
     <>
@@ -39,16 +42,26 @@ const Feed = () => {
         />
         <Button onClick={onSearchSubmit}>Искать</Button>
       </div>
-      <ItemList>
-        {movies.map((movie) => (
-          <Item
-            key={movie.id}
-            name={movie.name}
-            image={movie.poster.url || ImagePlaceholder}
-            rating={movie.rating.imdb}
-          />
-        ))}
-      </ItemList>
+      {movies.length > 0 ? (
+        <ItemList>
+          {movies.map((movie) => (
+            <Item
+              key={movie.id}
+              id={movie.id}
+              name={movie.name}
+              image={movie.poster.url || ImagePlaceholder}
+              rating={movie.rating.imdb}
+            />
+          ))}
+        </ItemList>
+      ) : (
+        <div className={styles.notFound}>
+          <h2 className={styles.notFoundTitle}>Упс... Ничего не найдено</h2>
+          <p className={styles.notFoundDescription}>
+            Попробуйте изменить запрос или ввести более точное название фильма
+          </p>
+        </div>
+      )}
     </>
   );
 };

@@ -12,3 +12,28 @@
   gap: 8px;
   margin-bottom: 80px;
 }
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notFoundTitle {
+  color: var(--secondary-clr);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 56px;
+  letter-spacing: -2%;
+  margin-bottom: 20px;
+}
+
+.notFoundDescription {
+  color: rgb(118, 126, 148);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0%;
+  text-align: center;
+  max-width: 45ch;
+}
