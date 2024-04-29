@@ -45,7 +45,7 @@ const Navbar = () => {
         )}
 
         <NavLink
-          to={'/login'}
+          to={'/auth/login'}
           onClick={activeUser ? logoutUser : undefined}
           className={({ isActive }) =>
             cn(styles.link, { [styles.active]: isActive })

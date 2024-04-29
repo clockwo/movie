@@ -17,13 +17,10 @@ const Feed = () => {
     if (searchInputRef.current) {
       const value = searchInputRef.current.value;
       if (value) {
-        console.log(value);
         findMovies(value);
       }
     }
   };
-
-  console.log(movies);
 
   return (
     <>
