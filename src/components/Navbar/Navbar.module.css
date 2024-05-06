@@ -16,8 +16,7 @@
   padding-inline: 16px;
   text-decoration: none;
 
-  color: rgb(168, 174, 191);
-  font-family: Poppins;
+  color: var(--link-text-clr);
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;

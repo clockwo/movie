@@ -13,8 +13,8 @@
 }
 
 .button:hover {
-  background-color: rgba(123, 110, 246, 0.8);
-  border: 2px solid rgba(123, 110, 246, 0.8);
+  background-color: var(--button-clr);
+  border: 2px solid var(--button-clr);
 }
 
 .button:active {

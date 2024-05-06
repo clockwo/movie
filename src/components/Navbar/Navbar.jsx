@@ -1,7 +1,10 @@
 import logo from '@/assets/icons/logo.svg';
 import styles from './Navbar.module.css';
+import { useContext } from 'react';
+import { UserContext } from '@/context/user.context';
 
 const Navbar = () => {
+  const { activeUser, logoutUser } = useContext(UserContext);
   return (
     <div className={styles.navbar}>
       <img src={logo} />
@@ -12,8 +15,13 @@ const Navbar = () => {
         <a className={styles.link} href="#">
           Мои фильмы
         </a>
-        <a className={styles.link} href="#">
-          Войти
+        {activeUser && (
+          <a className={styles.link} href="#">
+            {activeUser.name}
+          </a>
+        )}
+        <a className={styles.link} onClick={activeUser && logoutUser} href="#">
+          {activeUser?.isLogined ? 'Выйти' : 'Войти'}
         </a>
       </div>
     </div>
