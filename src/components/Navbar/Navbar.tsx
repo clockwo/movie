@@ -5,10 +5,19 @@ import { UserContext } from '@/context/user.context';
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootStore } from '@/store/store';
+import { logout } from '@/store/users.slice';
 
 const Navbar = () => {
-  const { activeUser, logoutUser } = useContext(UserContext);
+  const dispatch = useDispatch<AppDispatch>();
   const { navigateToHome } = useAppNavigation();
+  const { loginedUser, users } = useSelector((state: RootStore) => state.users);
+  const userName = users.find((user) => user.id === loginedUser);
+
+  const onLogoutClick = () => {
+    dispatch(logout());
+  };
 
   return (
     <div className={styles.navbar}>
@@ -38,20 +47,20 @@ const Navbar = () => {
           Мои фильмы
         </NavLink>
 
-        {activeUser && (
+        {loginedUser && (
           <a className={styles.link} href="#">
-            {activeUser.name}
+            {userName?.name}
           </a>
         )}
 
         <NavLink
           to={'/auth/login'}
-          onClick={activeUser ? logoutUser : undefined}
+          onClick={onLogoutClick}
           className={({ isActive }) =>
             cn(styles.link, { [styles.active]: isActive })
           }
         >
-          {activeUser?.isLogined ? 'Выйти' : 'Войти'}
+          {loginedUser ? 'Выйти' : 'Войти'}
         </NavLink>
       </div>
     </div>

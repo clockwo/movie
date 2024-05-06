@@ -1,5 +1,4 @@
 import type { Movie } from '@/interfaces/movie.interface';
-import type { MovieByID } from '@/interfaces/movieByID.interface';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -12,27 +11,29 @@ interface MovieResponse {
 
 const requestMovies = async (name: string) => {
   try {
-    const { data } = await axios.get<MovieResponse>(
-      `${PREFIX}/search?page=1&limit=8&query=${name}`,
-      {
-        headers: {
-          accept: 'application/json',
-          'X-API-KEY': API_KEY,
-        },
-      }
-    );
+    const { data } = await axios.get<MovieResponse>(`${PREFIX}/search`, {
+      headers: {
+        accept: 'application/json',
+        'X-API-KEY': API_KEY,
+      },
+      params: {
+        page: 1,
+        limit: 8,
+        query: name,
+      },
+    });
     return data.docs;
   } catch (error) {
     console.error('Ошибка при выполнении запроса:', error);
     return [];
   }
 };
+
 export const useApi = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   const fetchMovies = async (name: string) => {
-    const encodedName = encodeURIComponent(name);
-    const data = await requestMovies(encodedName);
+    const data = await requestMovies(name);
     setMovies(data);
   };
 
