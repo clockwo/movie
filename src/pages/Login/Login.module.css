@@ -1,0 +1,7 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  align-items: flex-start;
+  max-width: 384px;
+}

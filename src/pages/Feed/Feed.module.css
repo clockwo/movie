@@ -1,0 +1,14 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 588px;
+  margin-bottom: 24px;
+}
+
+.search {
+  display: flex;
+  width: 500px;
+  gap: 8px;
+  margin-bottom: 80px;
+}
