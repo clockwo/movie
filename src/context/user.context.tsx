@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import type { ReactNode } from 'react';
 import type { User } from '@/interfaces/user.interface';

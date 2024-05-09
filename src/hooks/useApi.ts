@@ -1,5 +1,4 @@
 import type { Movie } from '@/interfaces/movie.interface';
-import type { MovieByID } from '@/interfaces/movieByID.interface';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -37,7 +36,7 @@ export const useApi = () => {
   };
 
   useEffect(() => {
-    fetchMovies('Мстители');
+    fetchMovies('');
   }, []);
 
   const findMovies = async (name: string) => {
