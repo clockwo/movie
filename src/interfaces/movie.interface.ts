@@ -4,6 +4,15 @@ export interface Movie {
   name: string;
   poster: Poster;
   rating: Rating;
+  description?: string;
+  type?: string;
+  year?: number;
+  movieLength?: number;
+  genres: Genre[];
+}
+
+export interface Genre {
+  name: string;
 }
 
 export interface Poster {

@@ -1,7 +1,5 @@
 import logo from '@/assets/icons/logo.svg';
 import styles from './Navbar.module.css';
-import { useContext } from 'react';
-import { UserContext } from '@/context/user.context';
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
@@ -13,7 +11,10 @@ const Navbar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { navigateToHome } = useAppNavigation();
   const { loginedUser, users } = useSelector((state: RootStore) => state.users);
+  const movies = useSelector((state: RootStore) => state.movies);
   const userName = users.find((user) => user.id === loginedUser);
+  const moviesLength: number =
+    movies.find((movie) => movie.user === loginedUser)?.movies.length || 0;
 
   const onLogoutClick = () => {
     dispatch(logout());
@@ -45,6 +46,7 @@ const Navbar = () => {
           }
         >
           Мои фильмы
+          <span className={styles.moviesLength}>{moviesLength}</span>
         </NavLink>
 
         {loginedUser && (
