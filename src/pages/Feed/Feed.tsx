@@ -11,7 +11,7 @@ import { useApi } from '@/hooks/useApi';
 import { useRef } from 'react';
 
 const Feed = () => {
-  const { movies, findMovies } = useApi();
+  const { movies, findMovies, loading } = useApi();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const onSearchSubmit = () => {
     if (searchInputRef.current) {
@@ -39,7 +39,11 @@ const Feed = () => {
         />
         <Button onClick={onSearchSubmit}>Искать</Button>
       </div>
-      {movies.length > 0 ? (
+      {loading ? (
+        <div className={styles.loading}>
+          <h2 className={styles.loadingStatus}>Загружается...</h2>
+        </div>
+      ) : movies.length > 0 ? (
         <ItemList>
           {movies.map((movie) => (
             <Item
@@ -59,6 +63,7 @@ const Feed = () => {
           </p>
         </div>
       )}
+      {}
     </>
   );
 };
