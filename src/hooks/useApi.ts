@@ -11,6 +11,7 @@ interface MovieResponse {
 
 const requestMovies = async (name: string) => {
   try {
+    console.log('Fetch Fetch Fetch');
     const { data } = await axios.get<MovieResponse>(`${PREFIX}/search`, {
       headers: {
         accept: 'application/json',
