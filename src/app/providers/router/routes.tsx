@@ -1,18 +1,13 @@
-import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
-import Root from '@/layout/Root/Root';
-import styles from './App.module.css';
-import Feed from './pages/Feed/Feed';
-import Error from './pages/Error/Error';
-import './reset.css';
-import './index.css';
-import Login from './pages/Login/Login';
-import Favorites from './pages/Favorites/Favorites';
-import Movie from './pages/Movie/Movie';
+import RequireAuth from '@/shared/helpers/RequireAuth';
+import { PREFIX, API_KEY } from '@/shared/hooks/useApi';
+import Root from '@/app/layout/Root/Root';
+import Favorites from '@/pages/Favorites/Favorites';
+import Feed from '@/pages/Feed/Feed';
+import Login from '@/pages/Login/Login';
+import Movie from '@/pages/Movie/Movie';
+import Error from '@/pages/Error/Error';
 import axios from 'axios';
-import { PREFIX, API_KEY } from './hooks/useApi';
-import RequireAuth from './helpers/RequireAuth';
-import { store } from './store/store';
-import { Provider } from 'react-redux';
+import { createBrowserRouter, defer } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
@@ -69,14 +64,4 @@ const router = createBrowserRouter([
   },
 ]);
 
-const App = () => {
-  return (
-    <div className={styles.wrapper}>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
-    </div>
-  );
-};
-
-export default App;
+export default router;

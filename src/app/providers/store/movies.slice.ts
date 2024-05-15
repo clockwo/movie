@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Movie } from '@/interfaces/movie.interface';
+import type { Movie } from '@/shared/interfaces/movie.interface';
 import { loadState } from './localStorage';
 
 export const MOVIES_PERSISTENT_STATE = 'moviesData';

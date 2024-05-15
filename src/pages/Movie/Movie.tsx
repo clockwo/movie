@@ -1,10 +1,10 @@
-import type { Movie } from '@/interfaces/movie.interface';
+import type { Movie } from '@/shared/interfaces/movie.interface';
 import { Suspense } from 'react';
 import { Await, Link, useLoaderData } from 'react-router-dom';
 import Error from '../Error/Error';
 import styles from './Movie.module.css';
-import Rating from '@/components/Rating/Rating';
-import Favorite from '@/components/Favorite/Favorite';
+import Rating from '@/shared/components/Rating/Rating';
+import Favorite from '@/widgets/Favorite/Favorite';
 
 const Movie = () => {
   const { data } = useLoaderData() as { data: Movie };

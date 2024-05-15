@@ -1,4 +1,4 @@
-import type { Movie } from '@/interfaces/movie.interface';
+import type { Movie } from '@/shared/interfaces/movie.interface';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 

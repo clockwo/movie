@@ -1,13 +1,13 @@
-import Paragraph from '@/components/Paragraph/Paragraph';
-import Button from '@/components/Button/Button';
-import Heading from '@/components/Heading/Heading';
-import Input from '@/components/Input/Input';
-import Item from '@/components/Item/Item';
-import ItemList from '@/components/ItemList/ItemList';
+import Paragraph from '@/shared/components/Paragraph/Paragraph';
+import Button from '@/shared/components/Button/Button';
+import Heading from '@/shared/components/Heading/Heading';
+import Input from '@/shared/components/Input/Input';
+import Item from '@/widgets/Item/Item';
+import ItemList from '@/shared/components/ItemList/ItemList';
 import SearchIcon from '@/assets/icons/search.svg';
 import ImagePlaceholder from '@/assets/no-image-placeholder.png';
 import styles from './Feed.module.css';
-import { useApi } from '@/hooks/useApi';
+import { useApi } from '@/shared/hooks/useApi';
 import { useRef } from 'react';
 
 const Feed = () => {

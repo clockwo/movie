@@ -1,7 +1,7 @@
-import Paragraph from '@/components/Paragraph/Paragraph';
-import Heading from '@/components/Heading/Heading';
-import Button from '@/components/Button/Button';
-import { useAppNavigation } from '@/hooks/useAppNavigation';
+import Paragraph from '@/shared/components/Paragraph/Paragraph';
+import Heading from '@/shared/components/Heading/Heading';
+import Button from '@/shared/components/Button/Button';
+import { useAppNavigation } from '@/shared/hooks/useAppNavigation';
 import styles from './Error.module.css';
 import type { ErrorProps } from './Error.props';
 

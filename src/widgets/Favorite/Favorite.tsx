@@ -1,11 +1,11 @@
-import type { Movie } from '@/interfaces/movie.interface';
-import { toggleFavorite } from '@/store/movies.slice';
+import type { Movie } from '@/shared/interfaces/movie.interface';
+import { toggleFavorite } from '@/app/providers/store/movies.slice';
 import cn from 'classnames';
 import LikeIcon from '@/assets/icons/like.svg';
 import TrashIcon from '@/assets/icons/trash.svg';
 import styles from './Favorite.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootStore } from '@/store/store';
+import { AppDispatch, RootStore } from '@/app/providers/store/store';
 import { FavoriteProps } from './Favorite.props';
 import type { MouseEvent } from 'react';
 

@@ -1,7 +1,7 @@
-import Heading from '@/components/Heading/Heading';
-import Item from '@/components/Item/Item';
-import ItemList from '@/components/ItemList/ItemList';
-import type { RootStore } from '@/store/store';
+import Heading from '@/shared/components/Heading/Heading';
+import Item from '@/widgets/Item/Item';
+import ItemList from '@/shared/components/ItemList/ItemList';
+import type { RootStore } from '@/app/providers/store/store';
 import { useSelector } from 'react-redux';
 
 const Favorites = () => {
