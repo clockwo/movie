@@ -4,6 +4,7 @@ import type { ItemProps } from './Item.props';
 
 import Rating from '../Rating/Rating';
 import Favorite from '../Favorite/Favorite';
+import { Link } from 'react-router-dom';
 
 const Item = ({ id, name, image, rating }: ItemProps) => {
   return (
