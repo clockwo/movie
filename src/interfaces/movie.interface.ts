@@ -8,7 +8,7 @@ export interface Movie {
   type?: string;
   year?: number;
   movieLength?: number;
-  genres: Genre[];
+  genres?: Genre[];
 }
 
 export interface Genre {
