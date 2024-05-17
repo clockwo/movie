@@ -2,7 +2,7 @@ import Input from '@/components/Input/Input';
 import styles from './Login.module.css';
 import Button from '@/components/Button/Button';
 import Heading from '@/components/Heading/Heading';
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { UserContext } from '@/context/user.context';
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { useDispatch } from 'react-redux';

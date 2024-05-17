@@ -9,6 +9,24 @@ interface MovieResponse {
   docs: Movie[];
 }
 
+const requestRandomMovie = async () => {
+  try {
+    const { data } = await axios.get<Movie>(
+      `${PREFIX}/random?notNullFields=name&notNullFields=poster.url&notNullFields=description`,
+      {
+        headers: {
+          accept: 'application/json',
+          'X-API-KEY': API_KEY,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.error('Ошибка при выполнении запроса:', error);
+    return undefined;
+  }
+};
+
 const requestMovies = async (name: string) => {
   try {
     console.log('Fetch Fetch Fetch');
@@ -32,19 +50,36 @@ const requestMovies = async (name: string) => {
 
 export const useApi = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fetchMovies = async (name: string) => {
     const data = await requestMovies(name);
     setMovies(data);
   };
 
+  const fetchRandomMovies = async () => {
+    try {
+      setLoading(true);
+      const requests = Array.from({ length: 8 }, () => requestRandomMovie());
+      const data = await Promise.all(requests);
+      const filteredData = data.filter(
+        (movie): movie is Movie => movie !== undefined
+      );
+      setMovies(filteredData);
+      setLoading(false);
+    } catch (error) {
+      console.error('Ошибка при выполнении запросов:', error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fetchMovies('Мстители');
+    fetchRandomMovies();
   }, []);
 
   const findMovies = async (name: string) => {
     await fetchMovies(name);
   };
 
-  return { movies, findMovies };
+  return { movies, findMovies, loading };
 };
