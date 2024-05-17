@@ -10,6 +10,10 @@
   background-color: rgba(32, 40, 62, 0.8);
 }
 
+.link {
+  text-decoration: none;
+}
+
 .name {
   color: rgb(235, 238, 245);
   font-size: 16px;

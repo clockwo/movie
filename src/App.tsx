@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 import Root from '@/layout/Root/Root';
 import styles from './App.module.css';
 import Feed from './pages/Feed/Feed';
@@ -8,23 +8,42 @@ import './reset.css';
 import './index.css';
 import Login from './pages/Login/Login';
 import Favorites from './pages/Favorites/Favorites';
+import Movie from './pages/Movie/Movie';
+import axios from 'axios';
+import { MovieByID } from './interfaces/movieByID.interface';
+import { PREFIX, API_KEY } from './hooks/useApi';
+import RequireAuth from './helpers/RequireAuth';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: (
+      <RequireAuth>
+        <Root />
+      </RequireAuth>
+    ),
     children: [
       {
         path: '/',
         element: <Feed />,
       },
       {
-        path: '/login',
-        element: <Login />,
-      },
-      {
         path: '/favorites',
         element: <Favorites />,
+      },
+      {
+        path: '/movie/:id',
+        element: <Movie />,
+        loader: async ({ params }) => {
+          return defer({
+            data: axios.get<MovieByID>(`${PREFIX}/${params.id}`, {
+              headers: {
+                accept: 'application/json',
+                'X-API-KEY': API_KEY,
+              },
+            }),
+          });
+        },
       },
       {
         path: '*',
@@ -34,6 +53,17 @@ const router = createBrowserRouter([
             description="Упс! Такой страницы не существует!"
           />
         ),
+      },
+    ],
+  },
+
+  {
+    path: '/auth',
+    element: <Root />,
+    children: [
+      {
+        path: 'login',
+        element: <Login />,
       },
     ],
   },

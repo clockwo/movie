@@ -12,7 +12,13 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      <img onClick={navigateToHome} src={logo} />
+      <img
+        onClick={navigateToHome}
+        src={logo}
+        alt="Logo"
+        width={49}
+        height={40}
+      />
       <div className={styles.links}>
         <NavLink
           to={'/'}
@@ -39,7 +45,7 @@ const Navbar = () => {
         )}
 
         <NavLink
-          to={'/login'}
+          to={'/auth/login'}
           onClick={activeUser ? logoutUser : undefined}
           className={({ isActive }) =>
             cn(styles.link, { [styles.active]: isActive })
