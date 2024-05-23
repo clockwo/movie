@@ -1,0 +1,14 @@
+<svg width="24.000000" height="24.000000" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip1_972">
+			<rect id="Linear / School / Bookmark" width="24.000000" height="24.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip1_972)">
+		<path id="Vector" d="M21 16.09C21 19.18 21 20.73 20.26 21.41C19.91 21.73 19.47 21.93 19 21.99C18.01 22.1 16.86 21.08 14.55 19.04C13.53 18.14 13.02 17.69 12.43 17.57C12.14 17.51 11.85 17.51 11.56 17.57C10.97 17.69 10.46 18.14 9.44 19.04C7.13 21.08 5.98 22.1 4.99 21.99C4.52 21.93 4.08 21.73 3.73 21.41C3 20.73 3 19.18 3 16.09L3 11.09C3 6.8 3 4.66 4.31 3.33C5.63 2 7.75 2 12 2C16.24 2 18.36 2 19.68 3.33C21 4.66 21 6.8 21 11.09L21 16.09Z" stroke="#37D8A7" stroke-opacity="1.000000" stroke-width="2.000000"/>
+		<path id="Vector" d="M15 6L9 6" stroke="#37D8A7" stroke-opacity="1.000000" stroke-width="2.000000" stroke-linecap="round"/>
+	</g>
+</svg>

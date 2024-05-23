@@ -45,15 +45,17 @@ const Feed = () => {
         </div>
       ) : movies.length > 0 ? (
         <ItemList>
-          {movies.map((movie) => (
-            <Item
-              key={movie.id}
-              id={movie.id}
-              name={movie.name}
-              image={movie.poster.url || ImagePlaceholder}
-              rating={movie.rating.imdb}
-            />
-          ))}
+          {movies
+            .filter((movie) => movie.name)
+            .map((movie) => (
+              <Item
+                key={movie.id}
+                id={movie.id}
+                name={movie.name}
+                image={movie.poster.url || ImagePlaceholder}
+                rating={movie.rating.imdb || 0}
+              />
+            ))}
         </ItemList>
       ) : (
         <div className={styles.notFound}>

@@ -23,3 +23,52 @@
   text-decoration: none;
   margin-bottom: 8px;
 }
+
+.poster {
+  border-radius: 1.5rem;
+}
+
+.body {
+  display: flex;
+  margin-top: 5rem;
+  gap: 5rem;
+}
+
+.description {
+  color: var(--grey-clr);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  margin-bottom: 1.5rem;
+}
+
+.ratingAndFavorite {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.extraInfo {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.infoItem {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.infoItemTitle {
+  color: rgb(118, 126, 148);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.infoItemValue {
+  color: rgb(195, 200, 212);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+}

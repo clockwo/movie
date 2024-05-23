@@ -2,26 +2,23 @@ import Input from '@/components/Input/Input';
 import styles from './Login.module.css';
 import Button from '@/components/Button/Button';
 import Heading from '@/components/Heading/Heading';
-import { useContext, useEffect, useRef } from 'react';
-import { UserContext } from '@/context/user.context';
+import { useRef } from 'react';
 import { useAppNavigation } from '@/hooks/useAppNavigation';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from '@/store/store';
+
+import { login } from '@/store/users.slice';
 
 const Login = () => {
-  const { loginUser, activeUser } = useContext(UserContext);
   const inputRef = useRef<HTMLInputElement>(null);
   const { navigateToHome } = useAppNavigation();
-
-  useEffect(() => {
-    if (activeUser) {
-      navigateToHome();
-    }
-  }, [loginUser]);
+  const dispatch = useDispatch<AppDispatch>();
 
   const onLoginClick = () => {
     if (inputRef.current) {
       const value = inputRef.current.value;
       if (value) {
-        loginUser(value);
+        dispatch(login(value));
         navigateToHome();
       }
     }

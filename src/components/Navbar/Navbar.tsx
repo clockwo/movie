@@ -1,14 +1,24 @@
 import logo from '@/assets/icons/logo.svg';
 import styles from './Navbar.module.css';
-import { useContext } from 'react';
-import { UserContext } from '@/context/user.context';
 import { useAppNavigation } from '@/hooks/useAppNavigation';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootStore } from '@/store/store';
+import { logout } from '@/store/users.slice';
 
 const Navbar = () => {
-  const { activeUser, logoutUser } = useContext(UserContext);
+  const dispatch = useDispatch<AppDispatch>();
   const { navigateToHome } = useAppNavigation();
+  const { loginedUser, users } = useSelector((state: RootStore) => state.users);
+  const movies = useSelector((state: RootStore) => state.movies);
+  const userName = users.find((user) => user.id === loginedUser);
+  const moviesLength: number =
+    movies.find((movie) => movie.user === loginedUser)?.movies.length || 0;
+
+  const onLogoutClick = () => {
+    dispatch(logout());
+  };
 
   return (
     <div className={styles.navbar}>
@@ -36,22 +46,23 @@ const Navbar = () => {
           }
         >
           Мои фильмы
+          <span className={styles.moviesLength}>{moviesLength}</span>
         </NavLink>
 
-        {activeUser && (
+        {loginedUser && (
           <a className={styles.link} href="#">
-            {activeUser.name}
+            {userName?.name}
           </a>
         )}
 
         <NavLink
           to={'/auth/login'}
-          onClick={activeUser ? logoutUser : undefined}
+          onClick={onLogoutClick}
           className={({ isActive }) =>
             cn(styles.link, { [styles.active]: isActive })
           }
         >
-          {activeUser?.isLogined ? 'Выйти' : 'Войти'}
+          {loginedUser ? 'Выйти' : 'Войти'}
         </NavLink>
       </div>
     </div>

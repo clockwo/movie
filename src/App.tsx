@@ -3,16 +3,16 @@ import Root from '@/layout/Root/Root';
 import styles from './App.module.css';
 import Feed from './pages/Feed/Feed';
 import Error from './pages/Error/Error';
-import UserContextProvider from './context/user.context';
 import './reset.css';
 import './index.css';
 import Login from './pages/Login/Login';
 import Favorites from './pages/Favorites/Favorites';
 import Movie from './pages/Movie/Movie';
 import axios from 'axios';
-import { MovieByID } from './interfaces/movieByID.interface';
 import { PREFIX, API_KEY } from './hooks/useApi';
 import RequireAuth from './helpers/RequireAuth';
+import { store } from './store/store';
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <Movie />,
         loader: async ({ params }) => {
           return defer({
-            data: axios.get<MovieByID>(`${PREFIX}/${params.id}`, {
+            data: axios.get<Movie>(`${PREFIX}/${params.id}`, {
               headers: {
                 accept: 'application/json',
                 'X-API-KEY': API_KEY,
@@ -72,9 +72,9 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <div className={styles.wrapper}>
-      <UserContextProvider>
+      <Provider store={store}>
         <RouterProvider router={router} />
-      </UserContextProvider>
+      </Provider>
     </div>
   );
 };

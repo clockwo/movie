@@ -29,28 +29,31 @@ const requestRandomMovie = async () => {
 
 const requestMovies = async (name: string) => {
   try {
-    const { data } = await axios.get<MovieResponse>(
-      `${PREFIX}/search?page=1&limit=8&query=${name}`,
-      {
-        headers: {
-          accept: 'application/json',
-          'X-API-KEY': API_KEY,
-        },
-      }
-    );
+    console.log('Fetch Fetch Fetch');
+    const { data } = await axios.get<MovieResponse>(`${PREFIX}/search`, {
+      headers: {
+        accept: 'application/json',
+        'X-API-KEY': API_KEY,
+      },
+      params: {
+        page: 1,
+        limit: 8,
+        query: name,
+      },
+    });
     return data.docs;
   } catch (error) {
     console.error('Ошибка при выполнении запроса:', error);
     return [];
   }
 };
+
 export const useApi = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const fetchMovies = async (name: string) => {
-    const encodedName = encodeURIComponent(name);
-    const data = await requestMovies(encodedName);
+    const data = await requestMovies(name);
     setMovies(data);
   };
 
