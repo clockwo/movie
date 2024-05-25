@@ -15,7 +15,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@million/lint": "latest",
     "@reduxjs/toolkit": "^2.2.3",
     "@types/bun": "latest",
     "@types/node": "^20.12.7",
