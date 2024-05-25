@@ -15,6 +15,12 @@ const Login = () => {
   const { navigateToHome } = useAppNavigation();
   const dispatch = useDispatch<AppDispatch>();
 
+  useEffect(() => {
+    if (activeUser) {
+      navigateToHome();
+    }
+  }, [loginUser]);
+
   const onLoginClick = () => {
     if (inputRef.current) {
       const value = inputRef.current.value;

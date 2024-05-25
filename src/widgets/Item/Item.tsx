@@ -1,7 +1,6 @@
 import styles from './Item.module.css';
 
 import type { ItemProps } from './Item.props';
-import { Link } from 'react-router-dom';
 
 import Rating from '../../shared/components/Rating/Rating';
 import Favorite from '../Favorite/Favorite';
