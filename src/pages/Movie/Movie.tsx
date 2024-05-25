@@ -42,7 +42,7 @@ const Movie = () => {
                   <Favorite
                     id={data.id}
                     name={data.name}
-                    rating={data.rating.imdb}
+                    rating={data.rating.imdb ?? 0}
                     image={data.poster.url}
                   />
                 </div>
@@ -64,7 +64,7 @@ const Movie = () => {
                   <div className={styles.infoItem}>
                     <p className={styles.infoItemTitle}>Жанр</p>
                     <p className={styles.infoItemValue}>
-                      {data.genres.map((genre) => genre.name).join(', ')}
+                      {data.genres?.map((genre) => genre.name).join(', ')}
                     </p>
                   </div>
                 </div>

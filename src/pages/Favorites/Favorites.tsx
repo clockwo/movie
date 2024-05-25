@@ -23,7 +23,7 @@ const Favorites = () => {
               key={movie.id}
               id={movie.id}
               name={movie.name}
-              rating={movie.rating.imdb}
+              rating={movie.rating.imdb ?? 0}
               image={movie.poster.url}
             />
           ))}
