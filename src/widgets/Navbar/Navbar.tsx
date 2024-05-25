@@ -1,11 +1,11 @@
 import logo from '@/assets/icons/logo.svg';
 import styles from './Navbar.module.css';
-import { useAppNavigation } from '@/hooks/useAppNavigation';
+import { useAppNavigation } from '@/shared/hooks/useAppNavigation';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispatch, RootStore } from '@/store/store';
-import { logout } from '@/store/users.slice';
+import type { AppDispatch, RootStore } from '@/app/providers/store/store';
+import { logout } from '@/app/providers/store/users.slice';
 
 const Navbar = () => {
   const dispatch = useDispatch<AppDispatch>();

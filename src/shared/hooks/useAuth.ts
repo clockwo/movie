@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { User } from '@/interfaces/user.interface';
+import type { User } from '@/shared/interfaces/user.interface';
 
 const USERS_STORAGE_KEY = 'users';
 

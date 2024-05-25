@@ -1,4 +1,4 @@
-import type { RootStore } from '@/store/store';
+import type { RootStore } from '@/app/providers/store/store';
 import { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
