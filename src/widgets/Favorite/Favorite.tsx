@@ -7,18 +7,17 @@ import styles from './Favorite.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootStore } from '@/app/providers/store/store';
 import { FavoriteProps } from './Favorite.props';
-import type { MouseEvent } from 'react';
+import { useCallback, type MouseEvent } from 'react';
+import { isFavoriteSelector } from '@/app/providers/store/selectors/isFavoriteSelector';
 
 const Favorite = ({ id, name, image, rating }: FavoriteProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const { loginedUser } = useSelector((state: RootStore) => state.users);
-  const movies = useSelector((state: RootStore) => state.movies);
+  const isFavorite = useSelector(isFavoriteSelector(id));
 
-  const isFavorite = movies
-    .find((movie) => movie.user === loginedUser)
-    ?.movies.some((movie) => movie.id === id);
+  console.log('Rerender: ', name);
 
-  const addFavorite = (event: MouseEvent) => {
+  const addFavorite = useCallback((event: MouseEvent) => {
     event.preventDefault();
     const movie: Movie = {
       id: id,
@@ -29,7 +28,7 @@ const Favorite = ({ id, name, image, rating }: FavoriteProps) => {
     if (loginedUser) {
       dispatch(toggleFavorite({ user: loginedUser, movie }));
     }
-  };
+  }, []);
 
   return (
     <button

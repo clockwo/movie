@@ -6,19 +6,25 @@ import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootStore } from '@/app/providers/store/store';
 import { logout } from '@/app/providers/store/users.slice';
+import { useCallback } from 'react';
+import { moviesLengthSelector } from '@/app/providers/store/selectors/favoritesLengthSelector';
+import { loginedUserSelector } from '@/app/providers/store/selectors/loginedUserSelector';
+
+const Length = () => {
+  const moviesLength = useSelector(moviesLengthSelector);
+  return <span className={styles.moviesLength}>{moviesLength}</span>;
+};
 
 const Navbar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { navigateToHome } = useAppNavigation();
-  const { loginedUser, users } = useSelector((state: RootStore) => state.users);
-  const movies = useSelector((state: RootStore) => state.movies);
+  const { users } = useSelector((state: RootStore) => state.users);
+  const loginedUser = useSelector(loginedUserSelector);
   const userName = users.find((user) => user.id === loginedUser);
-  const moviesLength: number =
-    movies.find((movie) => movie.user === loginedUser)?.movies.length || 0;
 
-  const onLogoutClick = () => {
+  const onLogoutClick = useCallback(() => {
     dispatch(logout());
-  };
+  }, []);
 
   return (
     <div className={styles.navbar}>
@@ -46,7 +52,7 @@ const Navbar = () => {
           }
         >
           Мои фильмы
-          <span className={styles.moviesLength}>{moviesLength}</span>
+          <Length />
         </NavLink>
 
         {loginedUser && (
