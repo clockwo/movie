@@ -1,6 +1,7 @@
-import type { Movie } from '@/shared/interfaces/movie.interface';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+
+import type { Movie } from '@/shared/interfaces/movie.interface';
 
 export const API_KEY = 'DRT7XEH-7X7M89T-QDKWA6G-DTB4NN3';
 export const PREFIX = 'https://api.kinopoisk.dev/v1.4/movie';
@@ -29,7 +30,6 @@ const requestRandomMovie = async () => {
 
 const requestMovies = async (name: string) => {
   try {
-    console.log('Fetch Fetch Fetch');
     const { data } = await axios.get<MovieResponse>(`${PREFIX}/search`, {
       headers: {
         accept: 'application/json',

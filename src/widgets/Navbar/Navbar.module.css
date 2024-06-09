@@ -1,41 +1,41 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-block: 16px;
-  margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 16px;
+    margin-bottom: 80px;
 }
 
 .links {
-  display: flex;
-  gap: 16px;
-  margin-right: 16px;
+    display: flex;
+    gap: 16px;
+    margin-right: 16px;
 }
 
 .link {
-  display: flex;
-  gap: 0.5rem;
-  padding-inline: 16px;
-  text-decoration: none;
+    display: flex;
+    gap: 0.5rem;
+    padding-inline: 16px;
+    text-decoration: none;
 
-  color: var(--link-text-clr);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  letter-spacing: 1px;
+    color: var(--link-text-color);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 1px;
 }
 
 .link.active {
-  color: var(--white-clr);
+    color: var(--white-color);
 }
 
 .moviesLength {
-  display: grid;
-  width: 1.5rem;
-  aspect-ratio: 1 / 1;
-  place-items: center;
-  background-color: #7b6ef6;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 0.875rem;
+    display: grid;
+    width: 1.5rem;
+    aspect-ratio: 1 / 1;
+    place-items: center;
+    background-color: #7b6ef6;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.875rem;
 }

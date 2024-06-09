@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import type { User } from '@/shared/interfaces/user.interface';
 
 const USERS_STORAGE_KEY = 'users';
@@ -11,7 +12,7 @@ export const useAuth = () => {
     const storedUsers = localStorage.getItem(USERS_STORAGE_KEY);
     if (storedUsers) {
       const response: User[] = JSON.parse(storedUsers);
-      const existingUser = response.find((user) => user.isLogined);
+      const existingUser = response.find((user) => user.isLoggedInUser);
       setActiveUser(existingUser ? existingUser : null);
       setUsers(response);
     }
@@ -19,16 +20,16 @@ export const useAuth = () => {
 
   const loginUser = (userName: string) => {
     const usersSnapshot = users.map((user) => {
-      return { ...user, isLogined: false };
+      return { ...user, isLoggedInUser: false };
     });
     const existingUser = usersSnapshot.find((user) => user.name === userName);
     if (existingUser) {
-      existingUser.isLogined = true;
+      existingUser.isLoggedInUser = true;
       localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usersSnapshot));
       setActiveUser(existingUser);
       setUsers([...usersSnapshot]);
     } else {
-      const newUser = { name: userName, isLogined: true };
+      const newUser = { name: userName, isLoggedInUser: true };
       const updatedUsersData = [...usersSnapshot, newUser];
       localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(updatedUsersData));
       setActiveUser(newUser);
@@ -38,9 +39,9 @@ export const useAuth = () => {
 
   const logoutUser = () => {
     const usersSnapshot = [...users];
-    const existingUser = usersSnapshot.find((user) => user.isLogined);
+    const existingUser = usersSnapshot.find((user) => user.isLoggedInUser);
     if (existingUser) {
-      existingUser.isLogined = false;
+      existingUser.isLoggedInUser = false;
       localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usersSnapshot));
       setActiveUser(null);
       setUsers([...usersSnapshot]);

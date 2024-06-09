@@ -1,16 +1,16 @@
-import Input from '@/shared/components/Input/Input';
-import styles from './Login.module.css';
-import Button from '@/shared/components/Button/Button';
-import Heading from '@/shared/components/Heading/Heading';
 import { useRef } from 'react';
-import { useAppNavigation } from '@/shared/hooks/useAppNavigation';
 import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '@/app/providers/store/store';
 
-import { login } from '@/app/providers/store/users.slice';
+import styles from './Login.module.css';
+import type { AppDispatch } from '@/app/providers/store/store.ts';
+import { login } from '@/app/providers/store/users.slice.ts';
+import Button from '@/shared/components/Button/Button.tsx';
+import Heading from '@/shared/components/Heading/Heading.tsx';
+import Input from '@/shared/components/Input/Input.tsx';
+import { useAppNavigation } from '@/shared/hooks/useAppNavigation.ts';
 
 const Login = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const { navigateToHome } = useAppNavigation();
   const dispatch = useDispatch<AppDispatch>();
 

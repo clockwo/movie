@@ -1,4 +1,6 @@
 .wrapper {
-  max-width: calc(1440px - 120px * 2);
-  margin-inline: auto;
+    --container-width: 1440px;
+    --container-padding-x: 120px;
+    max-width: calc(var(--container-width) - var(--container-padding-x) * 2);
+    margin-inline: auto;
 }

@@ -1,5 +1,5 @@
-import StarIcon from '@/assets/icons/star.svg';
 import styles from './Rating.module.css';
+import StarIcon from '@/assets/icons/star.svg';
 
 const Rating = ({ rating }: { rating: number }) => {
   return (

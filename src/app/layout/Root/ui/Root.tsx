@@ -1,5 +1,7 @@
-import Navbar from '@/widgets/Navbar/Navbar';
 import { Outlet } from 'react-router-dom';
+
+import Navbar from '@/widgets/Navbar/Navbar.tsx';
+
 const Root = () => {
   return (
     <>

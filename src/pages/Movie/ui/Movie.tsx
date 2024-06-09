@@ -1,10 +1,11 @@
-import type { Movie } from '@/shared/interfaces/movie.interface';
 import { Suspense } from 'react';
 import { Await, Link, useLoaderData } from 'react-router-dom';
-import Error from '../Error/Error';
+
 import styles from './Movie.module.css';
-import Rating from '@/shared/components/Rating/Rating';
-import Favorite from '@/widgets/Favorite/Favorite';
+import Rating from '@/shared/components/Rating/Rating.tsx';
+import type { Movie } from '@/shared/interfaces/movie.interface.ts';
+import Favorite from '@/widgets/Favorite/Favorite.tsx';
+import { ErrorPage } from '@/pages/Error';
 
 const Movie = () => {
   const { data } = useLoaderData() as { data: Movie };
@@ -13,7 +14,7 @@ const Movie = () => {
       <Await
         resolve={data}
         errorElement={
-          <Error
+          <ErrorPage
             message="404"
             description="Мы не нашли такого фильма или случилась ошибка!"
           />
@@ -35,7 +36,7 @@ const Movie = () => {
                 width={480}
                 height={720}
               />
-              <div className={styles.movieInfo}>
+              <div>
                 <p className={styles.description}>{data.description}</p>
                 <div className={styles.ratingAndFavorite}>
                   <Rating rating={data.rating.imdb || 0} />

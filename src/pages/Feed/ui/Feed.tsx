@@ -1,24 +1,26 @@
-import Paragraph from '@/shared/components/Paragraph/Paragraph';
-import Button from '@/shared/components/Button/Button';
-import Heading from '@/shared/components/Heading/Heading';
-import Input from '@/shared/components/Input/Input';
-import Item from '@/widgets/Item/Item';
-import ItemList from '@/shared/components/ItemList/ItemList';
+import { useRef } from 'react';
+
+import styles from './Feed.module.css';
 import SearchIcon from '@/assets/icons/search.svg';
 import ImagePlaceholder from '@/assets/no-image-placeholder.png';
-import styles from './Feed.module.css';
-import { useApi } from '@/shared/hooks/useApi';
-import { useRef } from 'react';
+import Button from '@/shared/components/Button/Button.tsx';
+import Heading from '@/shared/components/Heading/Heading.tsx';
+import Input from '@/shared/components/Input/Input.tsx';
+import ItemList from '@/shared/components/ItemList/ItemList.tsx';
+import Paragraph from '@/shared/components/Paragraph/Paragraph.tsx';
+import { useApi } from '@/shared/hooks/useApi.ts';
+import Item from '@/widgets/Item/Item.tsx';
+
 
 const Feed = () => {
   const { movies, findMovies, loading } = useApi();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const onSearchSubmit = () => {
-    if (searchInputRef.current) {
-      const value = searchInputRef.current.value;
-      if (value) {
-        findMovies(value);
-      }
+    if (!searchInputRef.current) return;
+
+    const value = searchInputRef.current.value;
+    if (value) {
+      findMovies(value);
     }
   };
 

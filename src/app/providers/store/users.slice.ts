@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
+
 import { loadState } from './localStorage';
 
 export const USER_PERSISTENT_STATE = 'usersData';
@@ -11,13 +12,13 @@ export interface User {
 }
 
 export interface UsersState {
-  loginedUser: string | null;
+  loggedInUser: string | null;
   users: User[];
 }
 
 const initialState: UsersState = loadState<UsersState>(
   USER_PERSISTENT_STATE
-) ?? { loginedUser: null, users: [] };
+) ?? { loggedInUser: null, users: [] };
 
 export const usersSlice = createSlice({
   name: 'users',
@@ -29,18 +30,18 @@ export const usersSlice = createSlice({
       );
 
       if (userIndex !== -1) {
-        state.loginedUser = state.users[userIndex].id;
+        state.loggedInUser = state.users[userIndex].id;
       } else {
         const newUser = {
           id: nanoid(),
           name: action.payload,
         };
         state.users = [...state.users, newUser];
-        state.loginedUser = newUser.id;
+        state.loggedInUser = newUser.id;
       }
     },
     logout: (state) => {
-      state.loginedUser = null;
+      state.loggedInUser = null;
     },
   },
 });

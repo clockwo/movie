@@ -1,7 +1,8 @@
-import type { ButtonProps } from "./Button.props";
-import styles from "./Button.module.css";
+import { ButtonHTMLAttributes, FC } from 'react';
 
-const Button = ({ children, ...props }: ButtonProps) => {
+import styles from './Button.module.css';
+
+const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...props }) => {
   return (
     <button className={styles.button} {...props}>
       {children}

@@ -1,34 +1,45 @@
-import RequireAuth from '@/shared/helpers/RequireAuth';
-import { PREFIX, API_KEY } from '@/shared/hooks/useApi';
-import Root from '@/app/layout/Root/Root';
-import Favorites from '@/pages/Favorites/Favorites';
-import Feed from '@/pages/Feed/Feed';
-import Login from '@/pages/Login/Login';
-import Movie from '@/pages/Movie/Movie';
-import Error from '@/pages/Error/Error';
 import axios from 'axios';
 import { createBrowserRouter, defer } from 'react-router-dom';
 
+import RequireAuth from '@/app/providers/router/libs/RequireAuth';
+import { RootPage } from '@/app/layout/Root';
+import { LoginPage } from '@/pages/Login';
+import { MoviePage } from '@/pages/Movie';
+import { FavoritePage } from '@/pages/Favorites';
+import { ErrorPage } from '@/pages/Error';
+import { FeedPage } from '@/pages/Feed';
+import { API_KEY, PREFIX } from '@/shared/hooks/useApi';
+import type { Movie } from '@/shared/interfaces/movie.interface.ts';
+
+enum Routes {
+  home = '/',
+  favorites = '/favorites',
+  movie = '/movie/:id',
+  auth = '/auth',
+  login = 'login',
+  notFound = '*',
+}
+
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: Routes.home,
     element: (
       <RequireAuth>
-        <Root />
+        <RootPage />
       </RequireAuth>
     ),
     children: [
       {
-        path: '/',
-        element: <Feed />,
+        path: Routes.home,
+        element: <FeedPage />,
       },
       {
-        path: '/favorites',
-        element: <Favorites />,
+        path: Routes.favorites,
+        element: <FavoritePage />,
       },
       {
-        path: '/movie/:id',
-        element: <Movie />,
+        path: Routes.movie,
+        element: <MoviePage />,
         loader: async ({ params }) => {
           return defer({
             data: axios.get<Movie>(`${PREFIX}/${params.id}`, {
@@ -41,9 +52,9 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: '*',
+        path: Routes.notFound,
         element: (
-          <Error
+          <ErrorPage
             message="404"
             description="Упс! Такой страницы не существует!"
           />
@@ -53,12 +64,12 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/auth',
-    element: <Root />,
+    path: Routes.auth,
+    element: <RootPage />,
     children: [
       {
-        path: 'login',
-        element: <Login />,
+        path: Routes.login,
+        element: <LoginPage />,
       },
     ],
   },

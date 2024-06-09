@@ -1,9 +1,9 @@
-import Paragraph from '@/shared/components/Paragraph/Paragraph';
-import Heading from '@/shared/components/Heading/Heading';
-import Button from '@/shared/components/Button/Button';
-import { useAppNavigation } from '@/shared/hooks/useAppNavigation';
 import styles from './Error.module.css';
-import type { ErrorProps } from './Error.props';
+import type { ErrorProps } from './Error.props.ts';
+import Button from '@/shared/components/Button/Button.tsx';
+import Heading from '@/shared/components/Heading/Heading.tsx';
+import Paragraph from '@/shared/components/Paragraph/Paragraph.tsx';
+import { useAppNavigation } from '@/shared/hooks/useAppNavigation.ts';
 
 const Error = ({ message, description }: ErrorProps) => {
   const { navigateToHome } = useAppNavigation();

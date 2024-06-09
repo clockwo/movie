@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+
+import { saveState } from './localStorage';
 import moviesSlice, { MOVIES_PERSISTENT_STATE } from './movies.slice';
 import usersSlice, { USER_PERSISTENT_STATE } from './users.slice';
-import { saveState } from './localStorage';
 
 export const store = configureStore({
   reducer: {

@@ -1,14 +1,16 @@
-import logo from '@/assets/icons/logo.svg';
-import styles from './Navbar.module.css';
-import { useAppNavigation } from '@/shared/hooks/useAppNavigation';
-import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
-import type { AppDispatch, RootStore } from '@/app/providers/store/store';
-import { logout } from '@/app/providers/store/users.slice';
 import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
+import styles from './Navbar.module.css';
 import { moviesLengthSelector } from '@/app/providers/store/selectors/favoritesLengthSelector';
 import { loginedUserSelector } from '@/app/providers/store/selectors/loginedUserSelector';
+import type { AppDispatch, RootStore } from '@/app/providers/store/store';
+import { logout } from '@/app/providers/store/users.slice';
+import logo from '@/assets/icons/logo.svg';
+import { useAppNavigation } from '@/shared/hooks/useAppNavigation';
+
 
 const Length = () => {
   const moviesLength = useSelector(moviesLengthSelector);
@@ -19,8 +21,8 @@ const Navbar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { navigateToHome } = useAppNavigation();
   const { users } = useSelector((state: RootStore) => state.users);
-  const loginedUser = useSelector(loginedUserSelector);
-  const userName = users.find((user) => user.id === loginedUser);
+  const loggedInUser = useSelector(loginedUserSelector);
+  const userName = users.find((user) => user.id === loggedInUser);
 
   const onLogoutClick = useCallback(() => {
     dispatch(logout());
@@ -55,7 +57,7 @@ const Navbar = () => {
           <Length />
         </NavLink>
 
-        {loginedUser && (
+        {loggedInUser && (
           <a className={styles.link} href="#">
             {userName?.name}
           </a>
@@ -68,7 +70,7 @@ const Navbar = () => {
             cn(styles.link, { [styles.active]: isActive })
           }
         >
-          {loginedUser ? 'Выйти' : 'Войти'}
+          {loggedInUser ? 'Выйти' : 'Войти'}
         </NavLink>
       </div>
     </div>
